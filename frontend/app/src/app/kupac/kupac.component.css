@@ -1,0 +1,21 @@
+.background-login {
+    background-image: url("../../assets/img/slide-1.jpg");
+    display: flex;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.login-box{
+    background-color: #ffffff;
+    margin: auto;   
+    margin-top: 200px;
+    margin-bottom: 200px;   
+    border-radius: 10px;
+    padding: 20px;
+}

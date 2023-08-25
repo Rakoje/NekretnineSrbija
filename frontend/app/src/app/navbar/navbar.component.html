@@ -1,0 +1,44 @@
+<!-- ======= Header/Navbar ======= -->
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top"  onload="navbarPrikaz()">
+    <div class="container">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault"
+            aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="navbar-brand text-brand" routerLink="{{start}}" (click)="pocetna()" >Nekretnine<span class="color-b">Srbija</span></a>
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+            <ul class="navbar-nav">
+                <li *ngIf="ulogovan && (korisnik.tip == 1 || korisnik.tip == 2)" class="nav-item">
+                    <a class="nav-link active" href="/oglasivac">Moje nekretnine</a>
+                </li>   
+                <li *ngIf="ulogovan && (korisnik.tip == 1 || korisnik.tip == 2)" class="nav-item">
+                    <a class="nav-link active" href="/nova_nekretnina">Dodaj nekretninu</a>
+                </li>   
+                <li *ngIf="ulogovan && korisnik.tip == 0" class="nav-item" id="pretraga-item">
+                    <a class="nav-link active" href="/kupac">Pretraga</a>
+                </li>
+                <li *ngIf="ulogovan && korisnik.tip == 3" class="nav-item" id="pretraga-item">
+                    <a class="nav-link active" href="/admin">Pregled korisnika</a>
+                </li>
+                <li *ngIf="ulogovan && korisnik.tip == 3" class="nav-item" id="pretraga-item">
+                    <a class="nav-link active" href="/nova_agencija">Dodaj agenciju</a>
+                </li>
+                <li *ngIf="ulogovan" class="nav-item" id="logout-item">
+                    <a class="nav-link " routerLink="" href="" (click)="logout()">Izloguj se</a>
+                </li>
+
+                <li *ngIf="!ulogovan" class="nav-item" id="prijava-item">
+                    <a class="nav-link " routerLink="" href="">Prijava</a>
+                </li>
+
+                <li *ngIf="!ulogovan" class="nav-item" id="registracija-item">
+                    <a class="nav-link " href="/registracija" routerLink="registracija">Registracija</a>
+                </li>
+
+            </ul>
+        </div>
+        <div *ngIf="ulogovan" class="title-box" >Dobrodošli {{korisnik.ime}}</div>
+    </div>
+</nav><!-- End Header/Navbar -->

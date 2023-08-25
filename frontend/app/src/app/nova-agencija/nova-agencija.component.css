@@ -1,0 +1,16 @@
+.background-login {
+    background-image: url("../../assets/img/slide-1.jpg");
+    display: flex;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.error{
+    color: red;
+}

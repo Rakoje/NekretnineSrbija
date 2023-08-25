@@ -1,0 +1,143 @@
+<div class="row background-login">
+  <div class="col-sm-12 intro-single">
+    <div class="container" style="background-color: white;">
+      <div class="row">
+        <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+          <div class="title-single-box">
+            <h1 class="title-single">Registracija</h1>
+            <span class="color-text-a"></span>
+          </div>
+          <form class="form-a" enctype="multipart/form-data" [formGroup]="aFormGroup">
+            <div class="row d-flex justify-content-center" style="padding-top: 20px;">
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Ime</label>
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Ime"
+                    [(ngModel)]='ime' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Prezime</label>
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Prezime"
+                    [(ngModel)]='prezime' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Izaberite sliku (min. 100x100, max. 300x300)</label>
+                  <input class="form-control" accept="image/png, image/jpeg" type="file" id="file"
+                    (change)="onChange($event)">
+                    <span *ngIf="poruka_slika != ''" class="pb-2 error">{{poruka_slika}}</span>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Korisničko ime</label>
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Korisničko ime"
+                    [(ngModel)]='kor_ime' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Lozinka</label>
+                  <input type="password" class="form-control form-control-lg form-control-a" placeholder="Lozinka"
+                    [(ngModel)]='lozinka' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Ponovljena lozinka</label>
+                  <input type="password" class="form-control form-control-lg form-control-a"
+                    placeholder="Ponovljena lozinka" [(ngModel)]='pon_lozinka' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">E-mail</label>
+                  <input type="email" class="form-control form-control-lg form-control-a" placeholder="E-mail"
+                    [(ngModel)]='mejl' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Datum rođenja</label>
+                  <input type="date" class="form-control form-control-lg form-control-a" id="start" name="trip-start"
+                    max="2022-02-23" min="1900-01-01" [(ngModel)]='datum' [ngModelOptions]="{standalone: true}"
+                    value="2021-02-02">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="city">Grad</label>
+                  <select class="form-control form-select form-control-a" id="city" [(ngModel)]='grad'
+                    [ngModelOptions]="{standalone: true}" (change)="dohvatiAgencijePoGradu(grad)">
+                    <option *ngFor='let g of gradovi' value="{{g.naziv}}">{{g.naziv}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="city">Tip korisnika</label>
+                  <select class="form-control form-select form-control-a" id="city" [(ngModel)]='tip'
+                    [ngModelOptions]="{standalone: true}">
+                    <option value="0">kupac</option>
+                    <option value="1">samostalni prodavac</option>
+                    <option value="2">agent</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2" *ngIf="tip == 2 && agencije.length > 0">
+                <div class="form-group">
+                  <label class="pb-2" for="city">Naziv agencije</label>
+                  <select class="form-control form-select form-control-a" id="city" [(ngModel)]='agencija'
+                    [ngModelOptions]="{standalone: true}">
+                    <option *ngFor="let a of agencije" value="{{a.naziv}}">{{a.naziv}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2" *ngIf="tip == 2 && agencije.length > 0">
+                <div class="form-group">
+                  <label class="pb-2" for="city">Broj licence</label>
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Broj licence"
+                    [(ngModel)]='br_licence' [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Broj telefona</label>
+                  <input type="tel" id="phone" class="form-control form-control-lg form-control-a" name="phone"
+                    placeholder="Format: +(drzavni kod)(broj)" pattern="\+[0-9]{11,20}" required [(ngModel)]='telefon'
+                    [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-12 mb-2" *ngIf="tip == 2 && agencije.length == 0">
+                <div class="form-group">
+                  <span class="pb-2 error">Ne postoji agencija u navedenom gradu. Proverite da li ste uneli tačne
+                    podatke.</span>
+                </div>
+              </div>
+              <div class="col-md-6 mb-2 d-flex justify-content-center">
+                <div class="form-group">
+                  <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
+
+                  </ngx-recaptcha2>
+                </div>
+              </div>
+              <div class="col-md-12 d-flex justify-content-center" style="padding-bottom: 20px;">
+                <button type="submit" class="btn btn-b" [disabled]="!aFormGroup.valid"
+                  (click)="registracija()">Registruj
+                  se</button>
+              </div>
+              <div class="col-md-12 mb-2" *ngIf='poruka != ""'>
+                <div class="form-group" style="white-space: pre-line;">
+                  <span class="pb-2 error">{{poruka}}</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Intro Single-->
+</div>

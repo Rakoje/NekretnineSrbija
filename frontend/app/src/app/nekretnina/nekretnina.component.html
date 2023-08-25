@@ -1,0 +1,220 @@
+<!-- ======= Intro Single ======= -->
+<section class="intro-single background-login">
+    <div class="container" style="padding-top: 150px; background-color: white;">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">{{nekretnina.ulica}}</h1>
+                    <span class="color-text-a">{{nekretnina.grad}}, {{nekretnina.opstina}},
+                        {{nekretnina.mikrolokacija}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<!-- carousel -->
+<section class="background-login">
+    <div class="container" style="background-color: white;">
+        <div class="row">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <div style="height: 500px; width: 100%;">
+                    <div *ngFor="let s of nekretnina.slike, let i = index" class="d-flex justify-content-center">
+                        <img src="../../assets/img/{{s}}" *ngIf="i === currentSlide"
+                            style="max-width: 100%; max-height: 100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 10px;">
+            <div class="col-sm-12 d-flex justify-content-center">
+                <button class="btn btn-b p-3" (click)="onPreviousClick()">
+                    <span>
+                        <</span>
+                </button>
+                <button class="btn btn-b p-3" (click)="onNextClick()">
+                    <span>></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ======= Property Single ======= -->
+<section class="property-single nav-arrow-b background-login">
+    <div class="container" style="padding-top: 50px; background-color: white;">
+        <!--<div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div id="property-single-carousel" class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="carousel-item-b swiper-slide" *ngFor="let s of nekretnina.slike">
+                            <img src="../../assets/img/{{s}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="property-single-carousel-pagination carousel-pagination"></div>
+            </div>
+        </div>-->
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="row justify-content-between">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="card-header-c d-flex justify-content-center">
+                                <div class="card-title-c">
+                                    <h5 class="title-c" [ngClass]="prosjek_m2 < cena_m2 ? 'nema' : 'ima'">
+                                        <i class="bi bi-cash">&nbsp;</i>{{nekretnina.cena}}€</h5>
+                                    <br>
+                                    Prosečna cena na mikrolokaciji: {{prosjek_m2}}€/m<sup>2</sup>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-summary">
+                            <div class="summary-list">
+                                <ul class="list">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Oglašivač:</strong>
+                                        <span *ngIf="oglasivac.tip == 2">agencija</span>
+                                        <span *ngIf="oglasivac.tip == 1">vlasnik</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Godina izgradnje:</strong>
+                                        <span>{{nekretnina.godina}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Kvadratura:</strong>
+                                        <span>{{nekretnina.kvadratura}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Stanje nekretnine:</strong>
+                                        <span>{{nekretnina.stanje}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Tip grejanja:</strong>
+                                        <span>{{nekretnina.tip_grejanja}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Sprat:</strong>
+                                        <span>{{nekretnina.sprat}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Ukupna spratnost:</strong>
+                                        <span>{{nekretnina.max_sprat}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Parking:</strong>
+                                        <span>{{nekretnina.parking}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-7 section-md-t3">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Opis</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="property-description">
+                            <p class="description color-text-a">
+                                {{nekretnina.opis}}
+                            </p>
+                        </div>
+                        <div class="row section-t3">
+                            <div class="col-sm-12">
+                                <div class="title-box-d">
+                                    <h3 class="title-d">Karakteristike</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenities-list color-text-a">
+                            <ul class="list-a no-margin">
+                                <li [ngClass]="nekretnina.karakteristike.terasa ? 'ima' : 'nema'">Terasa</li>
+                                <li [ngClass]="nekretnina.karakteristike.lodja ? 'ima' : 'nema'">Lođa</li>
+                                <li [ngClass]="nekretnina.karakteristike.francuski_balkon ? 'ima' : 'nema'">Francuski
+                                    balkon</li>
+                                <li [ngClass]="nekretnina.karakteristike.lift ? 'ima' : 'nema'">Lift</li>
+                                <li [ngClass]="nekretnina.karakteristike.podrum ? 'ima' : 'nema'">Podrum</li>
+                                <li [ngClass]="nekretnina.karakteristike.garaza ? 'ima' : 'nema'">Garaža</li>
+                                <li [ngClass]="nekretnina.karakteristike.basta ? 'ima' : 'nema'">Bašta</li>
+                                <li [ngClass]="nekretnina.karakteristike.klima ? 'ima' : 'nema'">Klima</li>
+                                <li [ngClass]="nekretnina.karakteristike.internet ? 'ima' : 'nema'">Internet</li>
+                                <li [ngClass]="nekretnina.karakteristike.interfon ? 'ima' : 'nema'">Interfon</li>
+                                <li [ngClass]="nekretnina.karakteristike.telefon ? 'ima' : 'nema'">Telefon</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                            <h3 class="title-d" *ngIf="oglasivac.tip == 1">Vlasnik</h3>
+                            <h3 class="title-d" *ngIf="oglasivac.tip == 2">Agent</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+                        <img src="assets/img/{{oglasivac.kor_ime}}.png" alt="" class="img-fluid">
+                        <img src="assets/img/{{oglasivac.kor_ime}}.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-md-6 col-lg-8">
+                        <div class="property-agent">
+                            <h4 class="title-agent">{{oglasivac.ime}} {{oglasivac.prezime}}</h4>
+                            <ul class="list-unstyled">
+                                <li class="d-flex justify-content-between">
+                                    <strong>Kontakt telefon:</strong>
+                                    <span class="color-text-a">
+                                        <span *ngIf="oglasivac.tip == 1 && !prikaz_broja">
+                                            <button class="btn btn-b" style="padding: 10px; border-radius: 30%;"
+                                                (click)="prikaziBroj()">
+                                                +
+                                            </button>
+                                            &nbsp;
+                                        </span>
+                                        <span *ngIf="oglasivac.tip == 2 || prikaz_broja">
+                                            {{oglasivac.telefon}}
+                                            <span *ngIf="oglasivac.tip == 1 && prikaz_broja">
+                                                &nbsp;
+                                                <button class="btn btn-b" style="padding: 10px; border-radius: 30%;"
+                                                    (click)="sakrijBroj()">
+                                                    -
+                                                </button>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </li>
+                                <li *ngIf="oglasivac.tip == 2" class="d-flex justify-content-between">
+                                    <strong>Agencija:</strong>
+                                    <span class="color-text-a">{{agencija.naziv}}</span>
+                                </li>
+                                <li *ngIf="oglasivac.tip == 2" class="d-flex justify-content-between">
+                                    <strong>Grad:</strong>
+                                    <span class="color-text-a">{{agencija.grad}}</span>
+                                </li>
+                                <li *ngIf="oglasivac.tip == 2" class="d-flex justify-content-between">
+                                    <strong>Adresa:</strong>
+                                    <span class="color-text-a">{{agencija.adresa}}</span>
+                                </li>
+                                <li *ngIf="oglasivac.tip == 2" class="d-flex justify-content-between">
+                                    <strong>PIB:</strong>
+                                    <span class="color-text-a">{{agencija.PIB}}</span>
+                                </li>
+                                <li *ngIf="oglasivac.tip == 2" class="d-flex justify-content-between">
+                                    <strong>Broj licence:</strong>
+                                    <span class="color-text-a">{{oglasivac.br_licence}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Property Single-->
+<script src="slider.js"></script>

@@ -1,0 +1,172 @@
+<div class="row">
+    <div class="col-sm-12 intro-single">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Pregled registrovanih korisnika</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Intro Single-->
+</div>
+<div class="row" *ngFor="let knc of korisnici">
+    <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+        <img src="../../assets/img/{{knc.kor_ime}}.png" alt="" class="img-fluid">
+    </div>
+    <div class="col-sm-3" style="background-color: white;">
+        <div class="property-agent">
+            <h4 class="title-agent">{{knc.ime}} {{knc.prezime}}</h4>
+            <ul class="list-unstyled">
+                <li class="d-flex justify-content-between">
+                    <strong>Kontakt telefon:</strong>
+                    <span class="color-text-a">
+                        {{knc.telefon}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Tip:</strong>
+                    <span class="color-text-a" *ngIf="knc.tip == 0">
+                        kupac
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 1">
+                        vlasnik
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 2">
+                        agent
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>E mail:</strong>
+                    <span class="color-text-a">
+                        {{knc.mejl}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Datum rođenja:</strong>
+                    <span class="color-text-a">
+                        {{knc.datum_rodjenja}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 intro-single">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 col-lg-8" style="padding-top: 20px;">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Pregled korisnika na čekanju</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Intro Single-->
+</div>
+<div class="row" *ngFor="let knc of korisnici_c">
+    <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+        <img src="../../assets/img/{{knc.kor_ime}}.png" alt="" class="img-fluid">
+    </div>
+    <div class="col-sm-3" style="background-color: white;">
+        <div class="property-agent">
+            <h4 class="title-agent">{{knc.ime}} {{knc.prezime}}</h4>
+            <ul class="list-unstyled">
+                <li class="d-flex justify-content-between">
+                    <strong>Kontakt telefon:</strong>
+                    <span class="color-text-a">
+                        {{knc.telefon}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Tip:</strong>
+                    <span class="color-text-a" *ngIf="knc.tip == 0">
+                        kupac
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 1">
+                        vlasnik
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 2">
+                        agent
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>E mail:</strong>
+                    <span class="color-text-a">
+                        {{knc.mejl}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Datum rođenja:</strong>
+                    <span class="color-text-a">
+                        {{knc.datum_rodjenja}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-3 d-flex justify-content-center" style="padding: 50px;">
+        <button class="btn btn-b"  (click)="odobri(knc)">ODOBRI</button>&nbsp;
+        <button class="btn btn-x"  (click)="odbij(knc)">ODBIJ</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 intro-single">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 col-lg-8" style="padding-top: 20px;">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Pregled odbijenih korisnika</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Intro Single-->
+</div>
+<div class="row" *ngFor="let knc of korisnici_o">
+    <div class="col-md-6 col-lg-4 d-flex justify-content-center">
+        <img src="../../assets/img/{{knc.kor_ime}}.png" alt="" class="img-fluid">
+    </div>
+    <div class="col-sm-3" style="background-color: white;">
+        <div class="property-agent">
+            <h4 class="title-agent">{{knc.ime}} {{knc.prezime}}</h4>
+            <ul class="list-unstyled">
+                <li class="d-flex justify-content-between">
+                    <strong>Kontakt telefon:</strong>
+                    <span class="color-text-a">
+                        {{knc.telefon}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Tip:</strong>
+                    <span class="color-text-a" *ngIf="knc.tip == 0">
+                        kupac
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 1">
+                        vlasnik
+                    </span>
+                    <span class="color-text-a" *ngIf="knc.tip == 2">
+                        agent
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>E mail:</strong>
+                    <span class="color-text-a">
+                        {{knc.mejl}}
+                    </span>
+                </li>
+                <li class="d-flex justify-content-between">
+                    <strong>Datum rođenja:</strong>
+                    <span class="color-text-a">
+                        {{knc.datum_rodjenja}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

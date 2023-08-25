@@ -1,0 +1,268 @@
+<div class="row background-login">
+    <div class="col-sm-12 intro-single">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Dodaj nekretninu</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                    <form class="form-a" enctype="multipart/form-data">
+                        <div class="row" style="padding-top: 20px;">
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Izaberite slike (min. 3, maks. 6)</label>
+                                    <input class="form-control" multiple accept="image/png, image/jpeg" type="file"
+                                        id="file" (change)="onChange($event)">
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">JSON dodavanje:
+                                    </label>
+                                    <input class="form-control" type="file" (change)="onFileChange($event)">
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-2 d-flex justify-content-center">
+                                <div class="form-group">
+                                    <br>
+                                    <button class="btn btn-b" style="padding: 2px; border-radius:10px;"
+                                        (click)="openModal('custom-modal-1')">primer JSON-a</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group" *ngIf='poruka_slika != ""' style="white-space: pre-line;">
+                                    <span class="pb-2 error">{{poruka_slika}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group" style="white-space: pre-line;">
+                                    <span>Za dodavanje iz JSON-a preskočite ostale
+                                        korake<br></span>
+                                    <span class="pb-2 error">{{poruka_json}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Tip</label>
+                                    <select class="form-control form-select form-control-a" id="city" [(ngModel)]='tip'
+                                        [ngModelOptions]="{standalone: true}">
+                                        <option value="stan">Stan</option>
+                                        <option value="kuća">Kuća</option>
+                                        <option value="vikendica">Vikendica</option>
+                                        <option value="lokal">Lokal</option>
+                                        <option value="magacin">Magacin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Grad</label>
+                                    <select class="form-control form-select form-control-a" id="city" [(ngModel)]="grad"
+                                        [ngModelOptions]="{standalone: true}" (change)="dohvatiOpstinePoGradu(grad)">
+                                        <option *ngFor="let g of gradovi" value="{{g.naziv}}">{{g.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2" *ngIf="grad !== undefined">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Opština</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]="opstina" [ngModelOptions]="{standalone: true}"
+                                        (change)="dohvatiMikrolokacijePoOpstini(opstina)">
+                                        <option *ngFor="let o of opstine" value="{{o.naziv}}">{{o.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2" *ngIf="opstina !== undefined">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Mikrolokacija</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]="mikrolokacija" [ngModelOptions]="{standalone: true}"
+                                        (change)="dohvatiUlicePoMikrolokaciji(mikrolokacija)">
+                                        <option *ngFor="let m of mikrolokacije" value="{{m.naziv}}">{{m.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2" *ngIf="mikrolokacija !== undefined">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Ulica</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]="ulica" [ngModelOptions]="{standalone: true}">
+                                        <option *ngFor="let u of ulice" value="{{u.naziv}}">{{u.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2" *ngIf="ulica !== undefined">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Broj</label>
+                                    <input type="number" class="form-control form-control-lg form-control-a"
+                                        placeholder="Broj" min="1" [(ngModel)]='broj'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Kvadratura</label>
+                                    <input type="text" class="form-control form-control-lg form-control-a"
+                                        placeholder="Kvadratura" [(ngModel)]='kvadratura'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Broj soba</label>
+                                    <input type="number" class="form-control form-control-lg form-control-a"
+                                        placeholder="Broj soba" min="1" [(ngModel)]='broj_soba'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Cena</label>
+                                    <input type="number" class="form-control form-control-lg form-control-a"
+                                        placeholder="Cena u EUR" [(ngModel)]='cena'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Godina</label>
+                                    <input type="number" class="form-control form-control-lg form-control-a"
+                                        placeholder="Godina" max="2022" [(ngModel)]='godina'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Stanje</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]='stanje' [ngModelOptions]="{standalone: true}">
+                                        <option value="izvorno">Izvorno</option>
+                                        <option value="renovirano">Renovirano</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Tip grejanja</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]='tip_grejanja' [ngModelOptions]="{standalone: true}">
+                                        <option value="CG">CG</option>
+                                        <option value="EG">EG</option>
+                                        <option value="TA">TA</option>
+                                        <option value="klima">Klima</option>
+                                        <option value="podno grejanje">Podno grejanje</option>
+                                        <option value="podno grejanje">Toplotne pumpe</option>
+                                        <option value="uljani radijatori">Uljani radijatori</option>
+                                        <option value="kamin">Kamin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Sprat</label>
+                                    <input type="number" id="phone" class="form-control form-control-lg form-control-a"
+                                        name="phone" min="0" placeholder="Sprat" [(ngModel)]='sprat'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="Type">Ukupna spratnost</label>
+                                    <input type="number" id="phone" class="form-control form-control-lg form-control-a"
+                                        name="phone" min="1" placeholder="Sprat" [(ngModel)]='max_sprat'
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Parking</label>
+                                    <select class="form-control form-select form-control-a" [(ngModel)]='parking'
+                                        [ngModelOptions]="{standalone: true}">
+                                        <option value="DA">DA</option>
+                                        <option value="NE">NE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Opis do 50 reči</label>
+                                    <textarea class="form-control form-control-lg form-control-a"
+                                        placeholder="Opis do 50 reči" [(ngModel)]='opis'
+                                        [ngModelOptions]="{standalone: true}"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group">
+                                    <label class="pb-2" for="city">Ostale karakteristike</label>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='terasa'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Terasa
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='lodja'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Lođa
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='francuski_balkon'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Francuski
+                                            balkon
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='lift'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Lift
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='podrum'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Podrum
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='garaza'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Garaža
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='basta'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Bašta
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='klima'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Klima
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='internet'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Internet
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='interfon'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Interfon
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input type="checkbox" [(ngModel)]='telefon'
+                                                [ngModelOptions]="{standalone: true}">&nbsp; Telefon
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center" style="padding-bottom: 20px;">
+                                <button type="submit" class="btn btn-b" (click)="dodajNekretninu()">Dodaj
+                                    nekretninu</button>
+                            </div>
+                            <div class="col-md-12 mb-2" *ngIf='poruka != ""'>
+                                <div class="form-group" style="white-space: pre-line;">
+                                    <span class="pb-2 error">{{poruka}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Intro Single-->
+</div>
+<jw-modal id="custom-modal-1">
+    <h1>Primer JSON datoteke</h1>
+    <p><embed src="../../assets/json_primer.txt" height="400" width="400"></p>
+    <button class="btn btn-b" (click)="closeModal('custom-modal-1');">Zatvori</button>
+</jw-modal>

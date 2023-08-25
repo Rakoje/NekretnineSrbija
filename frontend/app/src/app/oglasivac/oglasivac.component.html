@@ -1,0 +1,52 @@
+<div class="row background-login">
+    <div class="col-sm-12 intro-single">
+      <div class="container" style="background-color: white;">
+        <div class="row">
+          <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+            <div class="title-single-box">
+              <h1 class="title-single">Moje nekretnine</h1>
+              <span class="color-text-a"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- End Intro Single-->
+  </div>
+  <div class="row background-login">
+  <div class="col-sm-12 property-grid grid">
+    <div class="container" style="background-color: white; padding-top: 50px">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let n of nekretnine">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="../../assets/img/{{n.slike[0]}}" alt="" class="img-a img-fluid box-height">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">{{n.ulica}}
+                      <br />
+                      <h3 style="color: white">{{n.grad}}, {{n.opstina}}, {{n.mikrolokacija}}</h3>
+                    
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">€ {{n.cena}}</span>
+                  </div>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-center">
+                    <li>
+                        <button [disabled]="n.prodato" class="btn btn-b" style="padding-bottom: 10px;" (click)="prodaj(n)">PRODATO</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Property Grid Single-->
+</div>

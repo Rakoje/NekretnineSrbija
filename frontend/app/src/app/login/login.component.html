@@ -1,0 +1,108 @@
+<div class="row background-login">
+  <div class="col-sm-12 intro-single">
+    <div class="container" style="background-color: white;">
+      <div class="row">
+        <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+          <div class="title-single-box">
+            <h1 class="title-single">Prijava</h1>
+            <span class="color-text-a"></span>
+          </div>
+          <form class="form-a">
+            <div class="row" style="padding-top: 20px;">
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Korisničko ime</label>
+                  <input type="text" class="form-control form-control-lg form-control-a" placeholder="Korisničko ime"
+                    [(ngModel)]="kor_ime" [ngModelOptions]="{standalone: true}">
+                </div>
+              </div>
+              <div class="col-md-6 mb-2">
+                <div class="form-group">
+                  <label class="pb-2" for="Type">Lozinka</label>
+                  <input type="password" class="form-control form-control-lg form-control-a" placeholder="Lozinka"
+                    [(ngModel)]="lozinka" [ngModelOptions]="{standalone: true}">
+                </div>
+                <br>
+              </div>
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-b" (click)="prijava()" href="">Prijavi se</button>
+                <span>&nbsp; Nemate nalog? <a routerLink='registracija' href="">Registrujte se.</a></span>
+                <br><br>
+                <span class="error">{{poruka}}</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Intro Single-->
+</div>
+<div class="row background-login">
+  <div class="col-sm-12 intro-single">
+    <div class="container" style="background-color: white;">
+      <div class="row">
+        <div class="col-md-12 col-lg-8" style="padding-top: 20px;">
+          <div class="title-single-box">
+            <h1 class="title-single">NAJNOVIJI OGLASI</h1>
+            <span class="color-text-a"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Intro Single-->
+</div>
+<div class="row background-login">
+  <div class="col-sm-12 property-grid grid">
+    <div class="container" style="background-color: white; padding-top: 50px">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let n of nekretnine">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img src="../../assets/img/{{n.slika}}" alt="" class="img-a img-fluid box-height">
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <div (click)="prikazNekretnine(n)">{{n.ulica}}
+                      <br />
+                      <h3 style="color: white">{{n.grad}}, {{n.opstina}}, {{n.mikrolokacija}}</h3>
+                    </div>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a">€ {{n.cena}}</span>
+                  </div>
+                  <a href="nekretnina" class="link-a" (click)="prikazNekretnine(n)">Kliknite ovde za prikaz
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">m<sup>2</sup></h4>
+                      <span>{{n.kvadratura}}</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Tip</h4>
+                      <span>{{n.tip}}</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Soba</h4>
+                      <span>{{n.broj_soba}}</span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Parking</h4>
+                      <span>{{n.parking}}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- End Property Grid Single-->
+</div>

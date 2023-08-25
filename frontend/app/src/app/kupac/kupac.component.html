@@ -1,0 +1,102 @@
+<div class="row background-login">
+    <div class="col-sm-12 intro-single">
+        <div class="container" style="background-color: white;">
+            <div class="row">
+                <div class="col-md-12 col-lg-8" style="padding-top: 150px;">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Pretraga nekretnina</h1>
+                        <span class="color-text-a"></span>
+                    </div>
+                    <form class="form-a">
+                        <div class="row">
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="Type">Tip</label>
+                                    <select class="form-control form-select form-control-a" id="Type" [(ngModel)]="tip"
+                                        [ngModelOptions]="{standalone: true}">
+                                        <option value="stan">Stan</option>
+                                        <option value="kuća">Kuća</option>
+                                        <option value="vikendica">Vikendica</option>
+                                        <option value="lokal">Lokal</option>
+                                        <option value="magacin">Magacin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Grad</label>
+                                    <select class="form-control form-select form-control-a" id="city" [(ngModel)]="grad"
+                                        [ngModelOptions]="{standalone: true}" (change)="dohvatiOpstinePoGradu(grad)">
+                                        <option *ngFor="let g of gradovi" value="{{g.naziv}}">{{g.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2" *ngIf="grad !== undefined">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Opština</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]="opstina" [ngModelOptions]="{standalone: true}"
+                                        (change)="dohvatiMikrolokacijePoOpstini(opstina)">
+                                        <option *ngFor="let o of opstine" value="{{o.naziv}}">{{o.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2" *ngIf="opstina !== undefined">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="city">Mikrolokacija</label>
+                                    <select class="form-control form-select form-control-a" id="city"
+                                        [(ngModel)]="mikrolokacija" [ngModelOptions]="{standalone: true}"
+                                        (change)="dodajLokaciju()">
+                                        <option *ngFor="let m of mikrolokacije" value="{{m.naziv}}">{{m.naziv}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group mt-3">
+                                    <span>Izabrane lokacije: 
+                                        <span *ngFor="let l of izabrane">{{l.mikrolokacija}} 
+                                            <button (click)="ukloni(l)" class="btn btn-x" style="padding: 2px 2px; border-radius: 10%;">x</button>
+                                            &nbsp;</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="bedrooms">Broj soba</label>
+                                    <select class="form-control form-select form-control-a" id="bedrooms"
+                                        [(ngModel)]="broj_soba" [ngModelOptions]="{standalone: true}">
+                                        <option value="0">Bilo koji</option>
+                                        <option value="1">1</option>
+                                        <option value="1.5">1.5</option>
+                                        <option value="2">2</option>
+                                        <option value="2.5">2.5</option>
+                                        <option value="3">3</option>
+                                        <option value="3.5">3.5</option>
+                                        <option value="4">4</option>
+                                        <option value="4.5">4.5</option>
+                                        <option value="5">5+</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <div class="form-group mt-3">
+                                    <label class="pb-2" for="garages">Cena do (opciono)</label>
+                                    <input type="number" class="form-control form-control-lg form-control-a"
+                                        placeholder="Cena u EUR" [(ngModel)]="cena"
+                                        [ngModelOptions]="{standalone: true}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center" style="padding-bottom: 20px;">
+                                <button type="submit" class="btn btn-b" (click)="pretraziNekretnine()">Pretraži</button>
+                            </div>
+                            <div class="col-md-12 d-flex justify-content-center">
+                                <img src="../../assets/img/loading.gif" alt="" height="100"  *ngIf="ucitavanje">
+                            </div>
+                            <span style="color: red; white-space: pre-line;">{{poruka}}</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Intro Single-->
+</div>

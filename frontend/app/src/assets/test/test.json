@@ -1,0 +1,37 @@
+{
+  "Realestate": {
+    "Name": "kuća",
+    "City": "Beograd",
+    "Municipality": "Novi Beograd",
+    "Microlocation": "Bežanijska kosa",
+    "Street": "Marka Pola 3",
+    "Area": 360,
+    "Rooms": 8,
+    "ConstructionYear": 2020,
+    "State": "izvorno",
+    "Heating": "CG",
+    "Floor": 3,
+    "TotalFloors": 3,
+    "Parking": "DA",
+    "MonthlyUtilities": 105,
+    "Price": 950000,
+    "About": "U najlepšoj ulici na Bežanijskoj kosi nalazi se kuća tipa vojvođanka koja se prodaje sa dvorištem. Kuću čine tri nivoa, suturen koji se lako pretvara u stambeni prostor, prizemlje i sprat. Kuća je uknjižena na 102kvm, a stvarne veličine 180kvm. Isped kuće nalazi se parking prostor.s",
+
+    "Characteristics": [ "Terasa", "Garaža", "Klima", "Internet", "Interfon", "Telefon" ]
+  },
+ "Advertiser":[
+ {
+ "Type":"Agencija",
+ "Name":"Goxy agencija",
+ "PIB":"680940397",
+ "City":"Beograd",
+ "Address":"Koste Glavinića br. 1a",
+ "Phone":"0112345123"
+ },
+ {
+ "FirstName":"Ana",
+ "LastName":"Anić",
+ "Phone":"+381113441234"
+}
+]
+}

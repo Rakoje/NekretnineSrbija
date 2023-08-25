@@ -1,0 +1,39 @@
+{
+ "Realestate":{
+ "Name":"Apartment",
+ "City":"Belgrade",
+ "Municipality":"Vracar",
+ "Microlocation":"Crveni krst",
+ "Street":"Radivoja Koraca",
+ "Area":95,
+ "Rooms":3,
+ "ConstructionYear":2020,
+ "State":"izvorno",
+ "Heating":"toplotne pumpe",
+ "Floor":2,
+ "TotalFloors":7,
+ "Parking":"DA",
+ "MonthlyUtilities":105,
+ "Price":225600,
+ "About":"Novije gradnje, sanitarije ugradjene, bez
+kuhinje. Garaza 16000",
+
+"Characteristics":["Terasa","Lift","Garaža","Klima","Intern
+et","Interfon","Telefon"]
+ },
+ "Advertiser":[
+ {
+ "Type":"Agencija",
+ "Name":"Agencija Beogradski vrabac",
+ "PIB":"100200333",
+ "City":"Beograd",
+ "Address":"Krunska 22",
+ "Phone":"0112345123"
+ },
+ {
+ "FirstName":"Dragan",
+ "LastName":"Grckovic",
+ "Phone":"0113441234"
+}
+]
+}
